@@ -15,21 +15,11 @@ public class Player_Movement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + moveSpeed);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - moveSpeed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position = new Vector3(transform.position.x + moveSpeed, transform.position.y, transform.position.z);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position = new Vector3(transform.position.x - moveSpeed, transform.position.y, transform.position.z);
-        }
+        if(isLocalPlayer)
+        {   
+            float x = Input.GetAxis("Horizontal") * moveSpeed;
+            float z = Input.GetAxis("Vertical") * moveSpeed;
+            transform.Translate(x, 0, z);
+        }   
     }
 }
